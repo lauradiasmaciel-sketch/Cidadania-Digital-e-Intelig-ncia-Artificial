@@ -3,38 +3,367 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidadania Digital & IA</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Consciência Digital | Deepfakes e Desinformação</title>
+    <style>
+        /* Reset e Variáveis de Cores */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        :root {
+            --bg-principal: #0f172a;
+            --bg-card: #1e293b;
+            --texto-claro: #f8fafc;
+            --texto-mutado: #94a3b8;
+            --neon-roxo: #a78bfa;
+            --neon-azul: #3b82f6;
+            --cor-sucesso: #10b981;
+            --cor-erro: #ef4444;
+        }
+
+        body {
+            background-color: var(--bg-principal);
+            color: var(--texto-claro);
+            line-height: 1.6;
+        }
+
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(135deg, #1e1b4b, #311042);
+            padding: 4rem 1rem;
+            text-align: center;
+            border-bottom: 4px solid var(--neon-roxo);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            color: var(--texto-claro);
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+        }
+
+        header p {
+            color: #cbd5e1;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Container Principal */
+        .container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Seções de Conteúdo */
+        section {
+            background-color: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 16px;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            border: 1px solid #334155;
+        }
+
+        h2 {
+            color: var(--neon-roxo);
+            margin-bottom: 1.2rem;
+            font-size: 2rem;
+            border-left: 5px solid var(--neon-azul);
+            padding-left: 12px;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--texto-mutado);
+            font-size: 1.1rem;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--texto-mutado);
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+            font-size: 1.05rem;
+        }
+
+        li strong {
+            color: var(--texto-claro);
+        }
+
+        /* Área do Quiz */
+        .quiz-container {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border: 2px solid var(--neon-azul);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+        }
+
+        .question {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--texto-claro);
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .option-btn {
+            background-color: #334155;
+            color: var(--texto-claro);
+            border: 1px solid #475569;
+            padding: 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.05rem;
+            transition: all 0.2s ease;
+        }
+
+        .option-btn:hover {
+            background-color: #475569;
+            border-color: var(--neon-azul);
+            transform: translateX(5px);
+        }
+
+        .option-btn.correct {
+            background-color: var(--cor-sucesso) !important;
+            border-color: #10b981;
+            color: white;
+        }
+
+        .option-btn.wrong {
+            background-color: var(--cor-erro) !important;
+            border-color: #ef4444;
+            color: white;
+        }
+
+        .feedback {
+            font-weight: bold;
+            margin: 1.5rem 0;
+            min-height: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .next-btn {
+            background-color: var(--neon-azul);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            display: none;
+            transition: background 0.2s;
+        }
+
+        .next-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .score-container {
+            text-align: center;
+            display: none;
+            padding: 2rem 0;
+        }
+
+        .score-container h3 {
+            font-size: 2rem;
+            color: var(--cor-sucesso);
+            margin-bottom: 1rem;
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            color: #64748b;
+            font-size: 0.95rem;
+            border-top: 1px solid #334155;
+            margin-top: 5rem;
+        }
+    </style>
 </head>
 <body>
 
     <header>
-        <div class="interface">
-            <div class="logo">
-                <h2>Consciência<span>Digital</span></h2>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#">Início</a></li>
-                    <li><a href="#sobre">Tecnologia</a></li>
-                    <li><a href="#dados">Impacto</a></li>
-                    <li><a href="#guia">Como Combater</a></li>
-                </ul>
-            </nav>
-        </div>
+        <h1>Deepfakes & Desinformação</h1>
+        <p>Aprenda a detectar manipulações e navegue na internet com total segurança.</p>
     </header>
 
-    <section class="banner">
-        <div class="interface">
-            <div class="banner-box">
-                <h1>Cidadania Digital e IA: <br><span>O Impacto das Deepfakes</span></h1>
-                <p>A tecnologia avança rápido, mas a nossa capacidade crítica deve avançar ainda mais. Aprenda a diferenciar o real do artificial.</p>
-                <a href="#guia" class="btn">Proteger-se Agora</a>
-            </div>
-        </div>
-    </section>
+    <div class="container">
+        
+        <section>
+            <h2>O que é um Deepfake?</h2>
+            <p>Deepfakes são vídeos, áudios ou imagens criados por Inteligência Artificial (IA) que imitam perfeitamente a aparência e a voz de pessoas reais. Usando algoritmos avançados, sistemas de computador conseguem trocar rostos e clonar falas de forma assustadoramente realista.</p>
+            <p>Embora a tecnologia seja incrível para efeitos de cinema, ela frequentemente é usada para criar notícias falsas, difamar pessoas e aplicar golpes financeiros virtuais.</p>
+        </section>
 
-    <section id="sobre" class="secao-cards">
-        <div class="interface">
-            <h2 class="titulo-principal">O Desafio Tecnológico</h2>
-            <p class="subtitulo">Entenda os conceitos que estão mudando a nossa relação com a verdade
+        <section>
+            <h2>Como Identificar Sinais de Fraude?</h2>
+            <p>Mesmo as melhores IAs ainda deixam pequenos rastros. Fique atento a esses pontos cruciais:</p>
+            <ul>
+                <li><strong>Olhos artificiais:</strong> Repare se a pessoa pisca de forma natural ou se o brilho nos olhos parece fixo e artificial.</li>
+                <li><strong>Áudio dessincronizado:</strong> Veja se as palavras faladas combinam perfeitamente com os movimentos da boca e dos lábios.</li>
+                <li><strong>Falhas nas bordas:</strong> Em vídeos manipulados, a área ao redor das bochechas, orelhas e cabelos pode ficar levemente borrada.</li>
+                <li><strong>Cenários estranhos:</strong> Fundos que entortam ou objetos que se deformam quando a pessoa se move indicam edição por IA.</li>
+            </ul>
+        </section>
+
+        <section class="quiz-container">
+            <h2>Desafio Digital: Teste Seus Conhecimentos</h2>
+            <p>Você consegue identificar ameaças digitais? Responda às perguntas abaixo:</p>
+            <hr style="border: 0; height: 1px; background: #334155; margin-bottom: 2rem;">
+
+            <div id="quiz-box">
+                <div class="question" id="question-text">Carregando pergunta...</div>
+                <div class="options-container" id="options-box">
+                    </div>
+                <div class="feedback" id="feedback-text"></div>
+                <button class="next-btn" id="next-button" onclick="nextQuestion()">Próxima Pergunta</button>
+            </div>
+
+            <div class="score-container" id="score-box">
+                <h3>Quiz Concluído!</h3>
+                <p id="final-score" style="color: var(--texto-claro); font-size: 1.2rem; margin-bottom: 1.5rem;"></p>
+                <button class="option-btn" style="text-align:center; width: auto; margin: 0 auto; display: block;" onclick="restartQuiz()">Tentar Novamente</button>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 - Guia de Sobrevivência na Internet. Criado para fins de conscientização digital.</p>
+    </footer>
+
+    <script>
+        const quizData = [
+            {
+                question: "1. Você se depara com um vídeo de uma celebridade fazendo declarações bizarras, mas nota que os lábios dela não acompanham perfeitamente a fala. Qual o procedimento correto?",
+                options: [
+                    "Compartilhar o vídeo imediatamente por ser um assunto urgente.",
+                    "Ignorar os sinais, afinal, se está em vídeo deve ser real.",
+                    "Desconfiar de deepfake e checar se grandes portais de notícias confirmam o fato."
+                ],
+                correct: 2,
+                explanation: "Correto! Problemas de sincronia labial são fortes indícios de manipulação por IA. Sempre verifique em fontes confiáveis antes de repassar."
+            },
+            {
+                question: "2. Qual o principal perigo que os deepfakes trazem para a sociedade atual?",
+                options: [
+                    "Apenas deixar os vídeos da internet mais pesados para carregar.",
+                    "A propagação em massa de desinformação, golpes financeiros e difamação de imagem.",
+                    "Substituir todos os atores reais de Hollywood já no próximo mês."
+                ],
+                correct: 1,
+                explanation: "Perfeito. O maior risco é o uso dessa tecnologia para espalhar mentiras convincentes, prejudicar reputações ou enganar cidadãos."
+            },
+            {
+                question: "3. Ao olhar uma imagem suspeita de uma figura pública, qual elemento costuma denunciar uma criação artificial por IA?",
+                options: [
+                    "Texturas estranhas na pele, detalhes bizarros nas mãos ou dentes desalinhados simetricamente.",
+                    "O fato da pessoa estar vestindo roupas pretas.",
+                    "Imagens de IA nunca possuem cores vivas."
+                ],
+                correct: 0,
+                explanation: "Boa! Ferramentas de geração de imagem ainda encontram muita dificuldade em renderizar perfeitamente extremidades humanas (como dedos das mãos) e fundos complexos."
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        const questionText = document.getElementById("question-text");
+        const optionsBox = document.getElementById("options-box");
+        const feedbackText = document.getElementById("feedback-text");
+        const nextButton = document.getElementById("next-button");
+        const quizBox = document.getElementById("quiz-box");
+        const scoreBox = document.getElementById("score-box");
+        const finalScore = document.getElementById("final-score");
+
+        function loadQuestion() {
+            resetState();
+            let currentQuestion = quizData[currentQuestionIndex];
+            questionText.innerText = currentQuestion.question;
+
+            currentQuestion.options.forEach((option, index) => {
+                const button = document.createElement("button");
+                button.innerText = option;
+                button.classList.add("option-btn");
+                button.addEventListener("click", () => selectOption(button, index));
+                optionsBox.appendChild(button);
+            });
+        }
+
+        function resetState() {
+            feedbackText.innerText = "";
+            feedbackText.style.color = "var(--texto-claro)";
+            nextButton.style.display = "none";
+            optionsBox.innerHTML = "";
+        }
+
+        function selectOption(selectedButton, index) {
+            let currentQuestion = quizData[currentQuestionIndex];
+            const allButtons = optionsBox.querySelectorAll(".option-btn");
+            
+            // Desabilita os outros botões para o usuário não clicar duas vezes
+            allButtons.forEach(btn => btn.disabled = true);
+
+            if (index === currentQuestion.correct) {
+                selectedButton.classList.add("correct");
+                feedbackText.innerText = "🎉 " + currentQuestion.explanation;
+                feedbackText.style.color = "var(--cor-sucesso)";
+                score++;
+            } else {
+                selectedButton.classList.add("wrong");
+                allButtons[currentQuestion.correct].classList.add("correct");
+                feedbackText.innerText = "❌ Resposta incorreta! O certo seria pesquisar e checar fontes.";
+                feedbackText.style.color = "var(--cor-erro)";
+            }
+
+            nextButton.style.display = "block";
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizBox.style.display = "none";
+            scoreBox.style.display = "block";
+            finalScore.innerText = `Você acertou ${score} de ${quizData.length} questões!`;
+        }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            scoreBox.style.display = "none";
+            quizBox.style.display = "block";
+            loadQuestion();
+        }
+
+        // Inicializa o quiz na primeira execução
+        loadQuestion();
+    </script>
+</body>
+</html>
