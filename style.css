@@ -1,301 +1,100 @@
-/* Configurações Gerais e Cores */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    scroll-behavior: smooth;
+/* Variáveis de Design do Sistema (Style CC) */
+:root {
+    --fundo-principal: #070a13;
+    --card-cyber: rgba(20, 30, 54, 0.6);
+    --borda-cyber: rgba(0, 242, 254, 0.15);
+    --neon-cyan: #00f2fe;
+    --neon-magenta: #f355da;
+    --texto-brilhante: #ffffff;
+    --texto-secundario: #94a3b8;
+    --glow: 0 0 20px rgba(0, 242, 254, 0.25);
 }
 
 body {
-    background-color: #f8fafc;
-    color: #1e293b;
+    background-color: var(--fundo-principal);
+    color: var(--texto-brilhante);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(243, 85, 218, 0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(0, 242, 254, 0.1) 0px, transparent 50%);
+    background-attachment: fixed;
 }
 
-.interface {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Títulos Globais */
-.titulo-principal {
-    text-align: center;
-    font-size: 36px;
-    color: #0f172a;
-    margin-bottom: 10px;
-}
-
-.subtitulo {
-    text-align: center;
-    color: #64748b;
-    margin-bottom: 50px;
-    font-size: 16px;
-}
-
-/* Cabeçalho */
-header {
-    background-color: #0f172a;
-    padding: 20px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-header .interface {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo h2 {
-    color: #ffffff;
-    font-size: 22px;
-}
-
-.logo h2 span {
-    color: #38bdf8;
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-}
-
-nav ul li a {
-    color: #cbd5e1;
-    text-decoration: none;
-    margin-left: 25px;
-    font-weight: 500;
-    transition: 0.3s ease;
-}
-
-nav ul li a:hover {
-    color: #38bdf8;
-}
-
-/* Banner Interativo */
-.banner {
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.8)), url('https://picsum.photos/1200/600') no-repeat center center/cover;
-    padding: 120px 0;
-    color: white;
-}
-
-.banner-box {
-    max-width: 700px;
-}
-
-.banner h1 {
-    font-size: 44px;
-    line-height: 1.2;
-    margin-bottom: 20px;
-}
-
-.banner h1 span {
-    color: #38bdf8;
-}
-
-.banner p {
-    font-size: 18px;
-    color: #94a3b8;
-    margin-bottom: 30px;
-}
-
-.btn {
-    display: inline-block;
-    background: linear-gradient(90deg, #0284c7, #38bdf8);
-    color: white;
-    padding: 14px 32px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 30px;
-    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
-    transition: 0.3s ease;
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.6);
-}
-
-/* Seção de Cards (O Problema) */
-.secao-cards {
-    padding: 80px 0;
-}
-
-.container-cards {
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-}
-
-.card {
-    background-color: white;
-    padding: 40px 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    flex: 1;
-    transition: 0.3s ease;
-    border-top: 4px solid #38bdf8;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-}
-
-.card-icone {
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-.card h3 {
-    font-size: 22px;
-    color: #0f172a;
-    margin-bottom: 15px;
-}
-
-.card p {
-    color: #64748b;
-    line-height: 1.6;
-    font-size: 15px;
-}
-
-/* Seção de Dados (Gráficos Visuais Criados com CSS) */
-.secao-dados {
-    background-color: #f1f5f9;
-    padding: 80px 0;
-}
-
-.bloco-impacto {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-}
-
-.texto-impacto {
-    flex: 1;
-}
-
-.texto-impacto h2 {
-    font-size: 32px;
-    color: #0f172a;
-    margin-bottom: 25px;
-}
-
-.texto-impacto ul {
-    list-style-type: none;
-}
-
-.texto-impacto ul li {
-    margin-bottom: 15px;
-    font-size: 16px;
-    color: #475569;
-}
-
-.texto-impacto ul li strong {
-    color: #0f172a;
-}
-
-.grafico-simulado {
-    flex: 1;
-    background-color: white;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.03);
-}
-
-.barra-progresso {
-    margin-bottom: 25px;
-}
-
-.barra-progresso span {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #475569;
-}
-
-.progresso-fundo {
-    background-color: #e2e8f0;
-    height: 12px;
-    border-radius: 6px;
+/* Componente CC: Card de Alta Tecnologia (Glassmorphism) */
+.cc-card {
+    background: var(--card-cyber);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--borda-cyber);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
     overflow: hidden;
 }
 
-.progresso-cheio {
-    background: linear-gradient(90deg, #0284c7, #38bdf8);
-    height: 100%;
-    border-radius: 6px;
+.cc-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
 }
 
-/* Seção do Guia Prático */
-.secao-guia {
-    padding: 80px 0;
+.cc-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 242, 254, 0.4);
+    box-shadow: var(--glow);
 }
 
-.passos {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-width: 800px;
-    margin: 0 auto;
+.cc-card:hover::before {
+    transform: translateX(100%);
 }
 
-.passo-item {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    background-color: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+/* Componente CC: Interface do Quiz (Console) */
+.cc-quiz-panel {
+    background: rgba(13, 19, 33, 0.85);
+    border: 2px solid #1e293b;
+    border-radius: 24px;
+    padding: 3rem;
+    position: relative;
 }
 
-.numero {
-    background-color: #0f172a;
-    color: #38bdf8;
-    font-size: 24px;
-    font-weight: bold;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    flex-shrink: 0;
+/* Componente CC: Botões de Opção Interativos */
+.cc-button-option {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--texto-brilhante);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.2rem;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease-in-out;
 }
 
-.passo-item h4 {
-    font-size: 18px;
-    color: #0f172a;
-    margin-bottom: 5px;
+.cc-button-option:hover:not(:disabled) {
+    background: rgba(0, 242, 254, 0.08);
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+    padding-left: 1.5rem;
 }
 
-.passo-item p {
-    color: #64748b;
-    font-size: 15px;
-    line-height: 1.5;
+/* Estados Avançados de Validação */
+.cc-button-option.correct-answer {
+    background: rgba(0, 230, 118, 0.15) !important;
+    border-color: #00e676 !important;
+    color: #00e676 !important;
+    box-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
 }
 
-/* Rodapé */
-footer {
-    background-color: #0f172a;
-    color: #64748b;
-    text-align: center;
-    padding: 30px 0;
-    font-size: 14px;
-}
-
-/* Adaptação para Celular */
-@media screen and (max-width: 768px) {
-    header .interface, .container-cards, .bloco-impacto {
-        flex-direction: column;
-        text-align: center;
-    }
-    nav ul { margin-top: 20px; }
-    nav ul li a { margin: 0 10px; }
-    .banner h1 { font-size: 32px; }
-    .passo-item { flex-direction: column; text-align: center; }
+.cc-button-option.wrong-answer {
+    background: rgba(255, 23, 68, 0.15) !important;
+    border-color: #ff1744 !important;
+    color: #ff1744 !important;
 }
